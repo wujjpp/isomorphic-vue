@@ -1,6 +1,4 @@
 # Isomorphic Vue -- In Development
-
-
 Isomorphic Vue is an opinionated boilerplate for web
 development built on top of [Node.js](https://nodejs.org/),
 [Express](http://expressjs.com/) and
