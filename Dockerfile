@@ -1,4 +1,4 @@
-FROM git.qixin007.com:5009/docker/node:6.11.2.5
+FROM node:6.10.2-alpine
 
 # Copy application files
 COPY ./build /usr/local/app/

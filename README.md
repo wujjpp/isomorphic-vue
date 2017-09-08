@@ -9,7 +9,7 @@ and [Browsersync](http://www.browsersync.io/). Helping you to stay productive
 following the best practices. A solid starting point for both professionals
 and newcomers to the industry.
 
-[![Build Status](http://git.qixin007.com/web/isomorphic-vue/badges/master/build.svg)](http://git.qixin007.com/web/isomorphic-vue/commits/master)
+[![Build Status](https://travis-ci.org/wujjpp/isomorphic-vue.svg?branch=master)](https://travis-ci.org/wujjpp/isomorphic-vue)
 
 ## Features
 - [Vue](https://vuejs.org/)
