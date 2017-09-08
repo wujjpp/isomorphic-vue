@@ -1,0 +1,147 @@
+before_script:
+  - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $CI_REGISTRY
+
+after_script:
+
+variables:
+  CUST_PORT_APP: '9000'
+  CUST_PORT_SIT: '60003'
+  CUST_PORT_UAT: '60004'
+  CUST_PORT_PROD: '60003'
+  CUST_UAT_REPLICAS: '1'
+  CUST_PROD_REPLICAS: '24'
+
+cache:
+  paths:
+  - node_modules
+
+stages:
+  - eslint
+  - test
+  - build_sit
+  - deploy_sit
+  - build_uat
+  - deploy_uat
+  - build_prod
+  - deploy_prod
+
+eslint_job:
+  stage: eslint
+  script:
+    - export
+    - npm install
+    - npm run eslint
+
+test_job:
+  stage: test
+  script:
+    - npm install
+    - npm run test
+
+# sit
+build_sit_job:
+  stage: build_sit
+  variables:
+    # CUST_APP_IMAGE_NAME: $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA
+    CUST_APP_IMAGE_NAME: $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_NAME
+  script:
+    - export
+    - npm install
+    - npm run build -- sit
+    - docker build -t $CUST_APP_IMAGE_NAME .
+    - docker push $CUST_APP_IMAGE_NAME
+  # except:
+  #  - tags
+  only:
+    - /^sit-.*$/
+  except:
+    - branches
+
+deploy_sit_job:
+  stage: deploy_sit
+  environment:
+    name: sit
+    url: http://sitweb.qixin007.com/
+  variables:
+    # CUST_APP_NAME: $CI_PROJECT_NAMESPACE-$CI_PROJECT_NAME-$CI_ENVIRONMENT_NAME
+    # CUST_APP_IMAGE_NAME: $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA
+    CUST_APP_NAME: $CI_PROJECT_NAMESPACE-$CI_PROJECT_NAME-$CI_ENVIRONMENT_NAME
+    CUST_APP_IMAGE_NAME: $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_NAME
+  script:
+    - export
+    - EXIST_CONTAINER_ID=`ssh manager-sit docker ps -af name=$CUST_APP_NAME --format "{{.ID}}"`
+    - if [ -n "$EXIST_CONTAINER_ID" ] ; then ssh manager-sit docker rm -f $EXIST_CONTAINER_ID; fi
+    - ssh manager-sit docker run -d --name $CUST_APP_NAME -p $CUST_PORT_SIT:$CUST_PORT_APP $CUST_APP_IMAGE_NAME
+  # except:
+  #  - tags
+  only:
+    - /^sit-.*$/
+  except:
+    - branches
+
+# uat
+build_uat_job:
+  stage: build_uat
+  variables:
+    CUST_APP_IMAGE_NAME: $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_NAME
+  script:
+    - export
+    - npm install
+    - npm run build -- uat
+    - docker build -t $CUST_APP_IMAGE_NAME .
+    - docker push $CUST_APP_IMAGE_NAME
+  only:
+    - /^uat-.*$/
+  except:
+    - branches
+
+deploy_uat_job:
+  stage: deploy_uat
+  environment:
+    name: uat
+    url: http://uatweb.qixin007.com/
+  variables:
+    CUST_APP_NAME: $CI_PROJECT_NAMESPACE-$CI_PROJECT_NAME-$CI_ENVIRONMENT_NAME
+    CUST_APP_IMAGE_NAME: $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_NAME
+  script:
+    - export
+    - EXIST_SERVVICE_ID=`ssh manager-1 docker service ls -f name=$CUST_APP_NAME -q`
+    - if [ -n "$EXIST_SERVVICE_ID" ] ; then ssh manager-1 docker service update --image $CUST_APP_IMAGE_NAME --replicas $CUST_UAT_REPLICAS --with-registry-auth $CUST_APP_NAME --detach=false; else ssh manager-1 docker service create --name $CUST_APP_NAME --detach=false -p $CUST_PORT_UAT:$CUST_PORT_APP --replicas $CUST_UAT_REPLICAS --with-registry-auth $CUST_APP_IMAGE_NAME; fi
+  only:
+    - /^uat-.*$/
+  except:
+    - branches
+
+# prod
+build_prod_job:
+  stage: build_prod
+  variables:
+    CUST_APP_IMAGE_NAME: $CI_REGISTRY_IMAGE:$CI_COMMIT_TAG
+  script:
+    - export
+    - npm install
+    - npm run build -- prod
+    - docker build -t $CUST_APP_IMAGE_NAME .
+    - docker push $CUST_APP_IMAGE_NAME
+  only:
+    - /^prod-.*$/
+  except:
+    - branches
+
+deploy_prod_job:
+  stage: deploy_prod
+  environment:
+    name: prod
+    url: http://www.qixin007.com
+  variables:
+    CUST_APP_NAME: $CI_PROJECT_NAMESPACE-$CI_PROJECT_NAME-$CI_ENVIRONMENT_NAME
+    CUST_APP_IMAGE_NAME: $CI_REGISTRY_IMAGE:$CI_COMMIT_TAG
+  script:
+    - export
+    - EXIST_SERVVICE_ID=`ssh manager-1 docker service ls -f name=$CUST_APP_NAME -q`
+    - if [ -n "$EXIST_SERVVICE_ID" ] ; then ssh manager-1 docker service update --image $CUST_APP_IMAGE_NAME  --replicas $CUST_PROD_REPLICAS --with-registry-auth $CUST_APP_NAME --detach=false; else ssh manager-1 docker service create --name $CUST_APP_NAME --detach=false -p $CUST_PORT_PROD:$CUST_PORT_APP --replicas $CUST_PROD_REPLICAS --with-registry-auth $CUST_APP_IMAGE_NAME; fi
+  when: manual
+  only:
+    - /^prod-.*$/
+  except:
+    - branches

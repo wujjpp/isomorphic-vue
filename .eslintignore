@@ -1,0 +1,12 @@
+src/styles/fonts/demo-files/*.*
+src/styles/animate.css/**
+src/core/typeahead/**
+src/core/session/express-session/**
+src/core/security/captcha/gt/gt.js
+src/core/qrcode/jquery.qrcode.min.js
+src/core/bootstrap-imageupload/**
+src/utils/jquery-qrcode/**
+src/core/logger/log4js-node/**
+src/utils/zhuge.js
+package-lock.json
+public/static**
