@@ -105,10 +105,7 @@ async function start() {
         }
       }, resolve)
 
-      handleServerBundleCompleted = () => {
-        startServer()
-        setTimeout(() => { bs.reload() }, 1000)
-      }
+      handleServerBundleCompleted = () => startServer()
     }
 
     let server = null

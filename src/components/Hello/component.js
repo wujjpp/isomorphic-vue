@@ -1,22 +1,16 @@
-import axios from 'axios'
-
 export default {
-  name: 'hello',
-  data () {
-    return {
-      msg: 'Welcome to Your Vue.js App'
+  name: 'Hello',
+  asyncData ({ store, route }) {
+    return store.dispatch('fetchAboutItem')
+  },
+  computed: {
+    item () {
+      return this.$store.state.aboutItem
     }
   },
-  methods: {
-    loadData: function (event) {
-      axios
-        .get('/api/getFoo')
-        .then((response) => {
-          alert(JSON.stringify(response.data, null, 2))
-        })
-        .catch((error) => {
-          alert(error)
-        })
+  data () {
+    return {
+      msg: 'Hello VUE'
     }
   }
 }
