@@ -53,6 +53,7 @@ if (!__BROWSER__) {
     if (!req) {
       throw new Error('req must not be null')
     }
+
     let config = {
       baseURL: apiRoot,
       paramsSerializer: function(params) {
@@ -61,8 +62,6 @@ if (!__BROWSER__) {
     }
     if (req && req.headers) {
       config.headers = req.headers
-      config.headers['x-request-from-internal-server'] = true
-      config.headers['x-request-client-ip-pass-by-node-server'] = req.requestContext.ip
     }
     let serverRequest = axios.create(config)
     _setupinterceptors(serverRequest)

@@ -6,4 +6,5 @@
     <span class="glyphicon glyphicon-heart"></span>
   </div>
 </template>
+<script src="./component.js"></script>
 <style lang="scss" src="./style.scss"></style>

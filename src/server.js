@@ -6,6 +6,9 @@ import express from 'express'
 import compression from 'compression'
 import path from 'path'
 import helmet from 'helmet'
+import bodyParser from 'body-parser'
+import cookieParser from 'cookie-parser'
+import { parse } from './core/query-string'
 import Context from './core/context'
 import config from '../tools/config'
 import assets from './assets-loader'
@@ -15,10 +18,22 @@ import { createRenderer } from 'vue-server-renderer'
 const PORT = process.env.PORT || config.backendPort || 9000
 const app = express()
 
+// setup query parser
+app.set('query parser', parse)
+
 app.use(helmet())
 app.use(compression())
 
 app.use(express.static(path.join(__dirname, 'public')))
+
+// setup body-parser
+app.use(bodyParser.json({limit: '5000kb'}))
+app.use(bodyParser.raw({limit: '5000kb'}))
+app.use(bodyParser.urlencoded({extended: false, limit: '5000kb'}))
+app.use(bodyParser.text({type: 'text/xml'}))
+
+// setup cookie-parser
+app.use(cookieParser())
 
 app.use((req, res, next) => {
   let context = new Context()
@@ -47,7 +62,7 @@ const renderer = createRenderer({
   </html>`
 })
 
-const render = context => {
+const render = (context, req) => {
   return new Promise((resolve, reject) => {
     const { app, router, store } = createApp()
     router.push(context.url)
@@ -61,7 +76,8 @@ const render = context => {
           if (Component.asyncData) {
             return Component.asyncData({
               store,
-              route: router.currentRoute
+              route: router.currentRoute,
+              req
             })
           }
         }))
@@ -76,7 +92,7 @@ const render = context => {
 
 app.get('*', (req, res, next) => {
   const context = { url: req.url }
-  render(context)
+  render(context, req)
     .then(app => {
       context.assets = assets
       renderer.renderToString(app, context, (err, html) => {

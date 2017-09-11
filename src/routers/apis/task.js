@@ -11,7 +11,7 @@ for (let i = 0; i < 10; ++i) {
   })
 }
 
-router.post('loadAll', (req, res) => {
+router.post('/loadAll', (req, res) => {
   res.json(tasks)
 })
 

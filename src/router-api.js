@@ -3,5 +3,5 @@
  */
 
 export default (app) => {
-  app.use('/api/task', require('./routers/apis/task'))
+  app.use('/api/tasks', require('./routers/apis/task'))
 }
