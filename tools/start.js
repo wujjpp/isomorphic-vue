@@ -48,7 +48,7 @@ async function start() {
           // 'core-js/es6/symbol', // fox fixing Symbol is not defined in IE
           // 'core-js/es6/object', // for fixing object.assign is not defined in IE.
           entry.src,
-          'webpack-hot-middleware/client?reload=false'
+          'webpack-hot-middleware/client?reload=true'
         ]
       }
     })

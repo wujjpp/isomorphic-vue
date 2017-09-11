@@ -14,17 +14,17 @@ export default () => {
       {
         path: '/',
         name: '/',
-        component: () => import('./components/Hello')
+        component: () => import('./routers/hello')
       },
       {
         path: '/about',
         name: 'about',
-        component: () => import('./components/About')
+        component: () => import('./routers/about')
       },
       {
         path: '/test',
         name: 'test',
-        component: () => import('./components/Test')
+        component: () => import('./routers/test')
       }
     ]
   })

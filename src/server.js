@@ -9,7 +9,7 @@ import helmet from 'helmet'
 import Context from './core/context'
 import config from '../tools/config'
 import assets from './assets-loader'
-import createApp from './createApp'
+import createApp from './create-app'
 import { createRenderer } from 'vue-server-renderer'
 
 const PORT = process.env.PORT || config.backendPort || 9000
@@ -26,6 +26,9 @@ app.use((req, res, next) => {
   next()
 })
 
+// attach apis
+require('./router-api')(app)
+
 const renderer = createRenderer({
   template: `<!DOCTYPE html>
   <html lang="en">
@@ -33,6 +36,7 @@ const renderer = createRenderer({
       <title>Hello</title>
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1, minimal-ui">
+      {{{ assets.styles }}}
     </head>
     <body>
       <div id="app">
@@ -80,7 +84,7 @@ app.get('*', (req, res, next) => {
           if (err.code === 404) {
             res.status(404).send('Page not found')
           } else {
-            res.status(500).send('Internal Server Error')
+            res.status(500).send(err)
           }
         } else {
           res.send(html)

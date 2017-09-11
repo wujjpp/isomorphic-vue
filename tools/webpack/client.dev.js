@@ -16,11 +16,7 @@ export default Object.assign({}, sharedClientConfig, {
 
   resolve: {
     extensions: ['.js', '.vue', '.json'],
-    alias: {
-      'vue$': 'vue/dist/vue.esm.js'
-    },
-    unsafeCache: true,
-    symlinks: false
+    unsafeCache: true
   },
 
   module: {

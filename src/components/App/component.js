@@ -1,6 +1,10 @@
 import '../../styles/global.scss'
 import './style.scss'
 
+import navBar from '../nav-bar/index.vue'
+
 export default {
-  name: 'app'
+  components: {
+    'nav-bar': navBar
+  }
 }

@@ -1,7 +1,11 @@
+/**
+ * Created by Wu Jian Ping on - 2017/09/06.
+ */
+
 import Vue from 'vue'
-import App from './components/App'
-import createRouter from './createRouter'
-import createStore from './store/createStore'
+import App from './components/app'
+import createRouter from './create-router'
+import createStore from './store/create-store'
 import { sync } from 'vuex-router-sync'
 
 export default () => {
