@@ -6,13 +6,16 @@ import taskService from '../../services/task'
 import { LOAD_TASK_SUCCESS } from '../mutation-types'
 
 const state = {
-  tasks: []
+  tasks: {
+    total: 0,
+    items: []
+  }
 }
 
 const actions = {
-  getTaskList({ commit, state }, { req }) {
+  getTaskList({ commit, state }, { page, req }) {
     taskService
-      .getTaskList(req)
+      .getTaskList(page, req)
       .then(data => {
         commit({
           type: LOAD_TASK_SUCCESS,

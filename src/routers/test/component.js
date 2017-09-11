@@ -6,7 +6,7 @@ import { mapState, mapGetters, mapActions } from 'vuex'
 
 export default {
   asyncData ({ store, route, req }) {
-    return store.dispatch('task/getTaskList', { req })
+    return store.dispatch('task/getTaskList', { page: route.query.page, req })
   },
 
   computed: {

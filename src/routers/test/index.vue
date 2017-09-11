@@ -2,7 +2,7 @@
 <div>
   <h2>这是Test页面</h2>
 
-  <span>Total: {{totalCount}}</span>
+  <span>Total: {{tasks.total}}</span>
   <table class="table">
     <thead>
       <tr>
@@ -14,7 +14,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr v-for="o in tasks">
+      <tr v-for="o in tasks.items">
         <td>{{o.id}}</td>
         <td>{{o.name}}</td>
       </tr>
