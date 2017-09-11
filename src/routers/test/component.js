@@ -2,7 +2,7 @@
  * Created by Wu Jian Ping on - 2017/09/11.
  */
 
-import { mapState, mapActions } from 'vuex'
+import { mapState, mapGetters, mapActions } from 'vuex'
 
 export default {
   asyncData ({ store, route, req }) {
@@ -12,7 +12,11 @@ export default {
   computed: {
     ...mapState('task', {
       tasks: state => state.tasks
-    })
+    }),
+
+    ...mapGetters('task', [
+      'totalCount'
+    ])
   },
 
   methods: {
