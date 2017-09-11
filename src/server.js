@@ -8,6 +8,7 @@ import path from 'path'
 import helmet from 'helmet'
 import bodyParser from 'body-parser'
 import cookieParser from 'cookie-parser'
+import Promise from 'bluebird'
 import { parse } from './core/query-string'
 import Context from './core/context'
 import config from '../tools/config'
@@ -71,16 +72,19 @@ const render = (context, req) => {
       if (!matchedComponents.length) {
         return reject({ code: 404 }) //eslint-disable-line
       }
+
       Promise
-        .all(matchedComponents.map(Component => {
+        .map(matchedComponents, Component => {
           if (Component.asyncData) {
             return Component.asyncData({
               store,
               route: router.currentRoute,
               req
             })
+          } else {
+            return Promise.resolve()
           }
-        }))
+        })
         .then(() => {
           context.state = store.state
           resolve(app)

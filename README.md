@@ -2,7 +2,7 @@
 Isomorphic Vue is an opinionated boilerplate for web
 development built on top of [Node.js](https://nodejs.org/),
 [Express](http://expressjs.com/) and
-[Vue](https://vuejs.org/), containing modern web development
+[Vue 2](https://vuejs.org/), containing modern web development
 tools such as [Webpack 3](http://webpack.github.io/), [Babel 6](https://babeljs.io/)
 and [Browsersync](http://www.browsersync.io/). Helping you to stay productive
 following the best practices. A solid starting point for both professionals
@@ -11,7 +11,7 @@ and newcomers to the industry.
 [![Build Status](https://travis-ci.org/wujjpp/isomorphic-vue.svg?branch=master)](https://travis-ci.org/wujjpp/isomorphic-vue)
 
 ## Features
-- [Vue](https://vuejs.org/)
+- [Vue 2](https://vuejs.org/)
 - [Webpack 3](https://webpack.js.org/)
 - [Babel 6](https://babeljs.io/)
 - Support client live reload

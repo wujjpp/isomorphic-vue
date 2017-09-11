@@ -7,7 +7,7 @@ let tasks = []
 for (let i = 0; i < 1000; ++i) {
   tasks.push({
     id: i + 1,
-    name: 'Task - ' + i
+    name: 'Task - ' + (i + 1)
   })
 }
 

@@ -14,7 +14,7 @@ const state = {
 
 const actions = {
   getTaskList({ commit, state }, { page, req }) {
-    taskService
+    return taskService
       .getTaskList(page, req)
       .then(data => {
         commit({
@@ -27,8 +27,8 @@ const actions = {
 }
 
 const getters = {
-  totalCount: state => {
-    return (state.tasks && state.tasks.length) || 0
+  cnt: state => {
+    return (state.tasks && state.tasks.items && state.tasks.items.length) || 0
   }
 }
 

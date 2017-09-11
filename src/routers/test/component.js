@@ -15,13 +15,25 @@ export default {
     }),
 
     ...mapGetters('task', [
-      'totalCount'
+      'cnt'
     ])
+  },
+
+  beforeRouteUpdate (to, from, next) {
+    this.getTaskList({ page: to.query.page })
+    next()
   },
 
   methods: {
     ...mapActions('task', [
       'getTaskList'
-    ])
+    ]),
+    changePage(page, event) {
+      event && event.preventDefault()
+      this.$router.history.push({
+        name: 'test',
+        query: {page}
+      })
+    }
   }
 }
