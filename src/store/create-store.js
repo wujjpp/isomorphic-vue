@@ -15,14 +15,11 @@ Vue.use(Vuex)
 
 export default () => {
   return new Vuex.Store({
-
     actions,
     getters,
-
     modules: {
       task
     },
-
     mutations: {
       [SET_ITEM] (state, payload) {
         Vue.set(state, 'item', payload.data)

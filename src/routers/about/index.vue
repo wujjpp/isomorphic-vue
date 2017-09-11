@@ -1,13 +1,6 @@
 <template>
 <div class="hello">
-  <h2>这是About页面</h2>
-  <div>
-    {{ item.name }}
-  </div>
-  <div>
-    {{ localComputed }}
-  </div>  
-  <button @click="change">Change</button>
+  <h2>这是About页面</h2>  
 </div>
 </template>
 <script src="./component.js"></script>
