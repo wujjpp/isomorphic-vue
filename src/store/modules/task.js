@@ -3,7 +3,7 @@
  */
 
 import taskService from '../../services/task'
-import { LOAD_TASK_SUCCESS, LOAD_TASK_FAIL } from '../mutation-types'
+import { LOAD_TASK_SUCCESS } from './mutation-types'
 
 const state = {
   tasks: []
@@ -19,22 +19,18 @@ const actions = {
           data
         })
       })
-      .catch(err => {
-        commit({type: LOAD_TASK_FAIL, err})
-      })
+      .catch(() => {})
   }
 }
 
 const mutations = {
-  [LOAD_TASK_SUCCESS](state, {data}) {
+  [LOAD_TASK_SUCCESS](state, { data }) {
     state.tasks = data
-  },
-  [LOAD_TASK_FAIL](data, {err}) {
-    console.log(err) // eslint-disable-line
   }
 }
 
 export default {
+  namespaced: true,
   state,
   actions,
   mutations
