@@ -6,13 +6,7 @@
   </div>
   <div>
     {{ localComputed }}
-  </div>
-  <div>
-    {{ completedTaskCount }}
-  </div>
-  <div>
-    {{ doneCount }}
-  </div>
+  </div>  
   <button @click="change">Change</button>
 </div>
 </template>
