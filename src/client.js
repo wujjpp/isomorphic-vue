@@ -3,12 +3,26 @@
  */
 
 import createApp from './create-app'
+import _ from 'lodash'
 
 const { app, router, store } = createApp()
 
 if (window.__INITIAL_STATE__) {
   store.replaceState(window.__INITIAL_STATE__)
 }
+
+const preparePromises = (components, funcs) => {
+  for (let i = 0; i < components.length; ++i) {
+    let component = components[i]
+    if (component.hooks && component.hooks.init) {
+      funcs.push(component.hooks.init)
+    }
+    if (component.components) {
+      preparePromises(_.values(component.components), funcs)
+    }
+  }
+}
+
 router.onReady(() => {
   router.beforeResolve((to, from, next) => {
     const matched = router.getMatchedComponents(to)
@@ -20,12 +34,17 @@ router.onReady(() => {
     if (!activated.length) {
       return next()
     }
+
+    let asyncFetches = []
+    preparePromises(matched, asyncFetches)
+
     Promise
-      .all(activated.map(c => {
-        if (c.asyncData) {
-          return c.asyncData({ store, route: to })
-        }
-      }))
+      .all(_.map(asyncFetches,
+        fetch => fetch({
+          store,
+          route: router.currentRoute
+        })
+      ))
       .then(() => {
         next()
       })

@@ -4,4 +4,5 @@
 
 export default (app) => {
   app.use('/api/tasks', require('./routers/apis/task'))
+  app.use('/api/counter', require('./routers/apis/counter'))
 }

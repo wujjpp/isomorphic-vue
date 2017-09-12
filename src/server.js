@@ -9,6 +9,7 @@ import helmet from 'helmet'
 import bodyParser from 'body-parser'
 import cookieParser from 'cookie-parser'
 import Promise from 'bluebird'
+import _ from 'lodash'
 import { parse } from './core/query-string'
 import Context from './core/context'
 import config from '../tools/config'
@@ -63,6 +64,18 @@ const renderer = createRenderer({
   </html>`
 })
 
+const preparePromises = (components, funcs) => {
+  for (let i = 0; i < components.length; ++i) {
+    let component = components[i]
+    if (component.hooks && component.hooks.init) {
+      funcs.push(component.hooks.init)
+    }
+    if (component.components) {
+      preparePromises(_.values(component.components), funcs)
+    }
+  }
+}
+
 const render = (context, req) => {
   return new Promise((resolve, reject) => {
     const { app, router, store } = createApp()
@@ -73,18 +86,15 @@ const render = (context, req) => {
         return reject({ code: 404 }) //eslint-disable-line
       }
 
+      let asyncFetches = []
+      preparePromises(matchedComponents, asyncFetches)
+
       Promise
-        .map(matchedComponents, Component => {
-          if (Component.asyncData) {
-            return Component.asyncData({
-              store,
-              route: router.currentRoute,
-              req
-            })
-          } else {
-            return Promise.resolve()
-          }
-        })
+        .map(asyncFetches, fetch => fetch({
+          store,
+          route: router.currentRoute,
+          req
+        }))
         .then(() => {
           context.state = store.state
           resolve(app)

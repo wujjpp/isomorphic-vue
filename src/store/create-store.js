@@ -8,6 +8,7 @@ import actions from './actions'
 import getters from './getters'
 
 import task from './modules/task'
+import counter from './modules/counter'
 
 Vue.use(Vuex)
 
@@ -16,7 +17,8 @@ export default () => {
     actions,
     getters,
     modules: {
-      task
+      task,
+      counter
     }
   })
 }

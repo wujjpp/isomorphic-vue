@@ -5,8 +5,8 @@
 import taskService from '../../services/task'
 import { LOAD_TASK_SUCCESS } from '../mutation-types'
 
-const state = {
-  tasks: {
+const state = () => {
+  return {
     total: 0,
     items: []
   }
@@ -28,13 +28,14 @@ const actions = {
 
 const getters = {
   cnt: state => {
-    return (state.tasks && state.tasks.items && state.tasks.items.length) || 0
+    return (state.items && state.items.length) || 0
   }
 }
 
 const mutations = {
   [LOAD_TASK_SUCCESS](state, { data }) {
-    state.tasks = data
+    state.total = data.total
+    state.items = data.items
   }
 }
 

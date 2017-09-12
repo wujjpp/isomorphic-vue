@@ -2,7 +2,7 @@
 <div>
   <h2>这是Test页面</h2>
   <div>Count: {{cnt}}</div>
-  <div>Total: {{tasks.total}}</div>
+  <div>Total: {{ tasks.total }}</div>
   <table class="table">
     <thead>
       <tr>
@@ -31,6 +31,9 @@
     <a href="/test?page=8" @click="changePage(8, $event)">[8]</a>
     <a href="/test?page=9" @click="changePage(9, $event)">[9]</a>
     <a href="/test?page=10" @click="changePage(10, $event)">[10]</a>
+  </div>
+  <div>
+    <counter />
   </div>
   <br />
   <img src="./images/a.jpg" />

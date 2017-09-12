@@ -4,14 +4,24 @@
 
 import { mapState, mapGetters, mapActions } from 'vuex'
 
-export default {
-  asyncData ({ store, route, req }) {
+import counter from './components/counter'
+
+let hooks = {
+  init({ store, route, req }) {
     return store.dispatch('task/getTaskList', { page: route.query.page, req })
+  }
+}
+
+export default {
+  hooks,
+
+  components: {
+    counter
   },
 
   computed: {
     ...mapState('task', {
-      tasks: state => state.tasks
+      tasks: state => state
     }),
 
     ...mapGetters('task', [
