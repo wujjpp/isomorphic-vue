@@ -17,6 +17,9 @@ const preparePromises = (components, funcs) => {
     if (component.hooks && component.hooks.init) {
       funcs.push(component.hooks.init)
     }
+    if (component.hooks && component.hooks.defer) {
+      funcs.push(component.hooks.defer)
+    }
     if (component.components) {
       preparePromises(_.values(component.components), funcs)
     }
