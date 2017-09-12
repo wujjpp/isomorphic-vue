@@ -8,7 +8,15 @@ import counter from './components/counter'
 
 let hooks = {
   init({ store, route, req }) {
-    return store.dispatch('task/getTaskList', { page: route.query.page, req })
+    return Promise.all([
+      store.dispatch('tdk/setTdk', {
+        title: 'this is test Page',
+        description: 'this is test page\'s description',
+        keywords: 'this is test page\'s keywords'
+      }),
+
+      store.dispatch('task/getTaskList', { page: route.query.page, req })
+    ])
   }
 }
 

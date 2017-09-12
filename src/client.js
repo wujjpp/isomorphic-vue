@@ -24,6 +24,9 @@ const preparePromises = (components, funcs) => {
 }
 
 router.onReady(() => {
+  let $t = $('title')
+  let $d = $('meta[name="description"]')
+  let $k = $('meta[name="keywords"]')
   router.beforeResolve((to, from, next) => {
     const matched = router.getMatchedComponents(to)
     const prevMatched = router.getMatchedComponents(from)
@@ -46,6 +49,9 @@ router.onReady(() => {
         })
       ))
       .then(() => {
+        $t.text(store.state.tdk.title)
+        $d.attr('content', store.state.tdk.description)
+        $k.attr('content', store.state.tdk.keywords)
         next()
       })
       .catch(next)

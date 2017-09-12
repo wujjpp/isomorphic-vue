@@ -3,7 +3,6 @@
  */
 
 import taskService from '../../services/task'
-import { LOAD_TASK_SUCCESS } from '../mutation-types'
 
 const state = () => {
   return {
@@ -17,10 +16,7 @@ const actions = {
     return taskService
       .getTaskList(page, req)
       .then(data => {
-        commit({
-          type: LOAD_TASK_SUCCESS,
-          data
-        })
+        commit('onLoadCompleted', data)
       })
       .catch(() => {})
   }
@@ -33,7 +29,7 @@ const getters = {
 }
 
 const mutations = {
-  [LOAD_TASK_SUCCESS](state, { data }) {
+  onLoadCompleted(state, data) {
     state.total = data.total
     state.items = data.items
   }

@@ -9,6 +9,7 @@ import getters from './getters'
 
 import task from './modules/task'
 import counter from './modules/counter'
+import tdk from './modules/tdk'
 
 Vue.use(Vuex)
 
@@ -17,6 +18,7 @@ export default () => {
     actions,
     getters,
     modules: {
+      tdk,
       task,
       counter
     }

@@ -1,5 +1,4 @@
 import counterService from '../../services/counter'
-import { LOAD_TASK_SUCCESS } from '../mutation-types'
 
 const state = () => {
   return {
@@ -13,10 +12,7 @@ const actions = {
     return counterService
       .getCounterData(req)
       .then(data => {
-        commit({
-          type: LOAD_TASK_SUCCESS,
-          data
-        })
+        commit('onLoadCompleted', data)
       })
       .catch(() => {})
   },
@@ -31,7 +27,7 @@ const actions = {
 }
 
 const mutations = {
-  [LOAD_TASK_SUCCESS](state, { data }) {
+  onLoadCompleted(state, data) {
     state.now = data.now
     state.count = data.count
   },

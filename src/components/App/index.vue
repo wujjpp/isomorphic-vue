@@ -1,4 +1,3 @@
-<script src="./component.js"></script>
 <template>
 <div>
   <img src="./images/logo.png">
@@ -6,3 +5,5 @@
   <router-view></router-view>
 </div>
 </template>
+
+<script src="./component.js"></script>
