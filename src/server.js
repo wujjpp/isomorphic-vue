@@ -53,7 +53,6 @@ const renderer = createRenderer({
       <title>{{{ tdk.title }}}</title>
       <meta name="description" content="{{{ tdk.description}}}">
       <meta name="keywords" content="{{{ tdk.keywords }}}">
-
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1, minimal-ui">
       {{{ assets.styles }}}
@@ -120,7 +119,6 @@ app.get('*', (req, res, next) => {
           } else {
             res.status(500).send(err)
           }
-          console.log(err)
         } else {
           res.send(html)
         }
