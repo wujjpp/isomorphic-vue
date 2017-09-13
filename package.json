@@ -5,7 +5,6 @@
   "main": "src/server.js",
   "scripts": {
     "start": "cross-env NODE_ENV=development babel-node ./tools/run start",
-    "start2": "cross-env NODE_ENV=development babel-node ./build/server.js",
     "start:dist": "node ./build/server.js",
     "clean": "babel-node ./tools/run clean",
     "build": "cross-env NODE_ENV=production babel-node ./tools/run build",
