@@ -95,20 +95,25 @@ Navigate to [http://localhost:3001](http://localhost:3001) to open Browsersync c
 .
 ├── /public/                     # Static files which are copied into the /build/public folder
 ├── /src/                        # The source code of the application
-│   ├── /components/             # Top level marko components
+│   ├── /components/             # Top level vue components
 │   ├── /core/                   # Core module or utility library
-│   ├── /layouts/                # Layout marko
 │   ├── /routes/                 # Routes or pages
-│   │   ├── /home/               # Example home page
+│   │   ├── /apis/               # Backend apis
+│   │   ├── /test/               # Example page
 │   │   │   ├── /components      # Page level compoment
 │   │   │   ├── /images          # Page level images
-│   │   │   ├── client.js        # Entry of client script
-│   │   │   ├── index.js         # Router for server side
-│   │   │   └── layout.marko     # Page template marko
+│   │   │   ├── component.js     # Vue component js
+│   │   │   ├── index.vue        # Vue component template
+│   │   │   └── style.scss       # Page level style
 │   │   └── /xxxx/               # xxxx page    
+│   ├── /service/                # isomorphic api service interface entry
+│   ├── /store/                  # vuex store
 │   ├── /styles/                 # Global stylesheets
-│   ├── /vendor/                 # Customised third-party library
 │   ├── /assets-loader.js        # Loader for loading assets.json
+│   ├── /client.js               # Client entry
+│   ├── /create-app.js           # Create Vue App
+│   ├── /create-router.js        # Create Vue Router
+│   ├── /router-api.js           # Attach backended api modules
 │   └── /server.js               # Express server app
 ├── /tests/                      # Unit and end-to-end tests
 ├── /tools/                      # Build automation scripts and utilities
@@ -127,8 +132,10 @@ Navigate to [http://localhost:3001](http://localhost:3001) to open Browsersync c
 │   ├── /run.js                  # Helper function for running build automation tasks
 │   ├── /start.js                # Launches the development web server with "live reload"
 │   └── /watch.js                # watch public folder, if changed copy files to dist/public folder
-└── package.json                 # The list of 3rd party libraries and utilities
-└── entry-settings.js            # Configure client entry for built
+├── cdn-settings.js              # Config CDN for each ENV
+├── entry-settings.js            # Configure client entry for built
+├── package.json                 # The list of 3rd party libraries and utilities
+└── port-settings.js             # Configure front and backend port for development
 ```
 
 ## How to Update
