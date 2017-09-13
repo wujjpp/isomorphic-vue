@@ -1,4 +1,4 @@
-# Isomorphic Vue -- In Development
+# Isomorphic Vue
 Isomorphic Vue is an opinionated boilerplate for web
 development built on top of [Node.js](https://nodejs.org/),
 [Express](http://expressjs.com/) and
@@ -71,41 +71,6 @@ then use the following command for building, after built, upload the `/build/pub
 $ npm run build -- prod
 ```
 NOTE: double dashes are required and there is a `blank` between `--` and `prod`
-
-## About complie enviroment
-We defined 2 parameters for identity complie enviroment
-
-___/tools/webpack/client.build.js___
-```javascript
-...
-plugins: [
-  new webpack.DefinePlugin({
-    '__BROWSER__': true,
-    '__DEV__': false
-  }),
-  ...
-]  
-...
-```
-You can use this 2 options in your code for condition compiling,
-
-For example: In `/src/routes/test/app-main/component.js`, we use `__BROWSER__` to tell compiler `jquery.easypiechart` and `toastr` only built for BROWSER, actually it is useless and cannot be used in node enviroment.
-```javascript
-if (__BROWSER__) {
-  require('easy-pie-chart/dist/jquery.easypiechart')
-  require('toastr/toastr.scss')
-  var toastr = require('toastr')
-}
-
-export default class Test {
-  onMount() {
-    $('.chart').easyPieChart({
-      easing: 'easeOutBounce',
-      onStep: function(from, to, percent) {
-        $(this.el).find('.percent').text(Math.round(percent));
-      }
-    });
-```
 
 ## Analyse webpack stats
 We have integrated tools for analysing bundled file, after run `npm run build`, try to type the following command in your terminal.
