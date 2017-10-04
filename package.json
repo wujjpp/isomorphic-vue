@@ -18,7 +18,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/wujjpp/marko-starter-kit.git"
+    "url": "https://github.com/wujjpp/isomorphic-vue.git"
   },
   "keywords": [
     "vue",
@@ -37,7 +37,7 @@
   ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/wujjpp/marko-starter-kit/issues"
+    "url": "https://github.com/wujjpp/isomorphic-vue/issues"
   },
   "dependencies": {
     "axios": "^0.16.2",
