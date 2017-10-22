@@ -2,13 +2,16 @@ module.exports = {
   'parser': 'babel-eslint',
   'env': {
     'browser': true,
-    'es6': true,
-    'node': true
+    'node': true,
+    'es6': true
   },
-  'extends': 'semistandard',
   'parserOptions': {
     'sourceType': 'module'
   },
+  'extends': 'semistandard',
+  'plugins': [
+    'html'
+  ],
   'rules': {
     'indent': [
       'error',
@@ -35,6 +38,7 @@ module.exports = {
   'globals': {
     '$': true,
     '__BROWSER__': true,
+    '__BUILD__': true,
     '__DEV__': true,
     '__SIT__': true,
     '__UAT__': true,
