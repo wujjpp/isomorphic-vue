@@ -91,7 +91,8 @@ export default Object.assign({}, serverSharedConfig, {
 
   plugins: [
     new webpack.DefinePlugin({
-      '__BROWSER__': false
+      '__BROWSER__': false,
+      '__BUILD__': true
     }),
 
     new webpack.DefinePlugin({
