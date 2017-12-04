@@ -15,9 +15,6 @@
           <router-link :to="{ path: '/'}" exact>Home</router-link>
         </li>
         <li>
-          <router-link :to="{ path: '/about'}">About</router-link>
-        </li>
-        <li>
           <router-link :to="{ path: '/test'}">Test</router-link>
         </li>
       </ul>

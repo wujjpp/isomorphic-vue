@@ -1,12 +1,13 @@
 /**
  * Created by Wu Jian Ping on 2017/2/15.
+ * You can customise bootstrap here
  */
 
 $color-green-jungle: #26C281;
 
-//字体
-$font-family-sans-serif: "Open Sans", "微软雅黑", "Microsoft Yahei", sans-serif, "Helvetica Neue", Helvetica, Arial, sans-serif !default;
-//基础字体大小
+//font name
+$font-family-sans-serif: "Open Sans", "Microsoft Yahei", sans-serif, "Helvetica Neue", Helvetica, Arial, sans-serif !default;
+//base font size
 $font-size-base: 14px !default;
 
 //h1,h2... font weight
@@ -45,23 +46,3 @@ $btn-danger-border:              $brand-danger !default;
 $border-radius-base: 0px !default;
 $border-radius-large: 1px !default;
 $border-radius-small: 0px !default;
-
-$panel-border-radius: 0px !default;
-
-//** Border color for inputs on focus
-$input-border-focus: $color-green-jungle !default;
-
-//** Placeholder text color
-$input-color-placeholder: #999 !default;
-
-//** `.form-group` margin
-$form-group-margin-bottom: 15px !default;
-
-//Previous, Next
-$pager-border-radius: 0px !default;
-
-//tooltip背景色和箭头颜色
-$tooltip-bg: #000 !default;
-
-//消息badge
-$badge-border-radius: 12px !default;

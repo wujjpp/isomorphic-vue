@@ -1,11 +1,11 @@
 <template>
 <div class="row">
   <div class="col-md-12">
-    <h3>1. Test Getter</h3> Count: {{cnt}}</div>
+    <h3>1. Test Getter <small>vuex getter</small></h3> Count: {{cnt}}</div>
 
   <div class="col-md-12">
-    <h3>2. Test ajax</h3>
-    <table class="table">
+    <h3>2. Test ajax <small>Change page number and refresh the page, then view html source code, you will see the right contents for SEO</small></h3>
+    <table class="table table-hover">
       <thead>
         <tr>
           <th>
@@ -21,18 +21,20 @@
           <td>{{o.name}}</td>
         </tr>
       </tbody>
+      <tfoot>
+        Total: {{ tasks.total }}
+        <a href="/test?page=1" @click="changePage(1, $event)">[1]</a>
+        <a href="/test?page=2" @click="changePage(2, $event)">[2]</a>
+        <a href="/test?page=3" @click="changePage(3, $event)">[3]</a>
+        <a href="/test?page=4" @click="changePage(4, $event)">[4]</a>
+        <a href="/test?page=5" @click="changePage(5, $event)">[5]</a>
+        <a href="/test?page=6" @click="changePage(6, $event)">[6]</a>
+        <a href="/test?page=7" @click="changePage(7, $event)">[7]</a>
+        <a href="/test?page=8" @click="changePage(8, $event)">[8]</a>
+        <a href="/test?page=9" @click="changePage(9, $event)">[9]</a>
+        <a href="/test?page=10" @click="changePage(10, $event)">[10]</a>
+      </tfoot>
     </table>
-    Total: {{ tasks.total }}
-    <a href="/test?page=1" @click="changePage(1, $event)">[1]</a>
-    <a href="/test?page=2" @click="changePage(2, $event)">[2]</a>
-    <a href="/test?page=3" @click="changePage(3, $event)">[3]</a>
-    <a href="/test?page=4" @click="changePage(4, $event)">[4]</a>
-    <a href="/test?page=5" @click="changePage(5, $event)">[5]</a>
-    <a href="/test?page=6" @click="changePage(6, $event)">[6]</a>
-    <a href="/test?page=7" @click="changePage(7, $event)">[7]</a>
-    <a href="/test?page=8" @click="changePage(8, $event)">[8]</a>
-    <a href="/test?page=9" @click="changePage(9, $event)">[9]</a>
-    <a href="/test?page=10" @click="changePage(10, $event)">[10]</a>
   </div>
 
   <div class="col-md-12">

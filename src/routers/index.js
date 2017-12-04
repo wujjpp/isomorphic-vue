@@ -15,11 +15,6 @@ export default [
         component: () => import('./home')
       },
       {
-        name: 'about',
-        path: 'about',
-        component: () => import('./about')
-      },
-      {
         name: 'test',
         path: 'test',
         component: () => import('./test')
