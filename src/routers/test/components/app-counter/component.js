@@ -11,6 +11,7 @@ const hooks = {
 }
 
 export default {
+  name: 'app-counter',
   hooks,
   computed: {
     ...mapState('counter', {

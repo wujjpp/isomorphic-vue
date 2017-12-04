@@ -4,7 +4,7 @@
 
 import { mapState, mapGetters, mapActions } from 'vuex'
 
-import counter from './components/counter'
+import appCounter from './components/app-counter'
 
 let hooks = {
   init({ store, route, req }) {
@@ -24,7 +24,7 @@ export default {
   hooks,
 
   components: {
-    counter
+    [appCounter.name]: appCounter
   },
 
   computed: {

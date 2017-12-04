@@ -37,7 +37,7 @@
 
   <div class="col-md-12">
     <h3>3. Test Component</h3>
-    <counter />
+    <app-counter />
   </div>
 
   <div class="col-md-12">

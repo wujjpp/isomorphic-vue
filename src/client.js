@@ -4,9 +4,9 @@
 
 import createApp from './create-app'
 import _ from 'lodash'
+import './styles/global.scss'
 
 if (__BROWSER__) {
-  require('./styles/global.scss')
   require('bootstrap')
 }
 
