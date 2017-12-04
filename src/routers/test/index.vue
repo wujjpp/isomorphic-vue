@@ -56,6 +56,11 @@
     <h3>6. Test icon font</h3>
     <span class="glyphicon glyphicon-heart"></span>
   </div>
+
+  <div class="col-md-12">
+    <h3>7. Test plain javascript library</h3>
+    <a class="btn btn-info" href="javascript:;" @click="showToastr">Click me to show toastr</a>
+  </div>
 </div>
 </template>
 <script src="./component.js"></script>

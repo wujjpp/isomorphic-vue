@@ -6,6 +6,11 @@ import { mapState, mapGetters, mapActions } from 'vuex'
 
 import appCounter from './components/app-counter'
 
+if (__BROWSER__) {
+  var toastr = require('toastr')
+  require('../../styles/toastr.scss')
+}
+
 let hooks = {
   init({ store, route, req }) {
     return Promise.all([
@@ -52,6 +57,9 @@ export default {
         name: 'test',
         query: {page}
       })
+    },
+    showToastr() {
+      toastr.success('Have fun storming the castle!', 'Miracle Max Says')
     }
   }
 }
