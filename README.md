@@ -11,9 +11,12 @@ and newcomers to the industry.
 [![Build Status](https://travis-ci.org/wujjpp/isomorphic-vue.svg?branch=master)](https://travis-ci.org/wujjpp/isomorphic-vue)
 
 ## Features
-- [Vue 2](https://vuejs.org/)
-- [Webpack 3](https://webpack.js.org/)
-- [Babel 6](https://babeljs.io/)
+- [vue 2](https://vuejs.org/)
+- [vuex](https://vuex.vuejs.org/)
+- [vue-router](https://router.vuejs.org/)
+- [vue-server-renderer](https://ssr.vuejs.org)
+- [webpack 3](https://webpack.js.org/)
+- [babel 6](https://babeljs.io/)
 - Support client live reload
 - Supports server auto compile and restart
 - Support [less](http://lesscss.org/), [sass](https://sass-lang.com/)
