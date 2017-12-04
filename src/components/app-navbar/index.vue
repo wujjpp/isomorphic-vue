@@ -12,7 +12,7 @@
     <div id="navbar" class="collapse navbar-collapse">
       <ul class="nav navbar-nav">
         <li>
-          <router-link :to="{ path: '/'}">Home</router-link>
+          <router-link :to="{ path: '/'}" exact>Home</router-link>
         </li>
         <li>
           <router-link :to="{ path: '/about'}">About</router-link>
