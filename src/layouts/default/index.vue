@@ -18,6 +18,7 @@
 <style lang="scss" scoped>
 .content-container {
     margin-top: 66px;
+    margin-bottom: 60px;
 }
 </style>
 
