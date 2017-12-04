@@ -3,7 +3,7 @@
  */
 
 import Vue from 'vue'
-import App from './components/app'
+import App from './App.vue'
 import createRouter from './create-router'
 import createStore from './store/create-store'
 import { sync } from 'vuex-router-sync'

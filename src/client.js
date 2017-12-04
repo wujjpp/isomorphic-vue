@@ -7,6 +7,7 @@ import _ from 'lodash'
 
 if (__BROWSER__) {
   require('./styles/global.scss')
+  require('bootstrap')
 }
 
 const { app, router, store } = createApp()

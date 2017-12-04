@@ -1,6 +1,6 @@
 <template>
 <div class="hello">
-  <h2>这是About页面</h2>  
+  <h2>This is about page</h2>
 </div>
 </template>
 <script src="./component.js"></script>

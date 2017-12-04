@@ -1,26 +1,28 @@
 <template>
-<div>
-  <h2>这是Test页面</h2>
-  <div>Count: {{cnt}}</div>
-  <div>Total: {{ tasks.total }}</div>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>
-          ID</th>
-        <th>
-          Name
-        </th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr v-for="o in tasks.items">
-        <td>{{o.id}}</td>
-        <td>{{o.name}}</td>
-      </tr>
-    </tbody>
-  </table>
-  <div>
+<div class="row">
+  <div class="col-md-12">
+    <h3>1. Test Getter</h3> Count: {{cnt}}</div>
+
+  <div class="col-md-12">
+    <h3>2. Test ajax</h3>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>
+            ID</th>
+          <th>
+            Name
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="o in tasks.items">
+          <td>{{o.id}}</td>
+          <td>{{o.name}}</td>
+        </tr>
+      </tbody>
+    </table>
+    Total: {{ tasks.total }}
     <a href="/test?page=1" @click="changePage(1, $event)">[1]</a>
     <a href="/test?page=2" @click="changePage(2, $event)">[2]</a>
     <a href="/test?page=3" @click="changePage(3, $event)">[3]</a>
@@ -32,13 +34,26 @@
     <a href="/test?page=9" @click="changePage(9, $event)">[9]</a>
     <a href="/test?page=10" @click="changePage(10, $event)">[10]</a>
   </div>
-  <div>
+
+  <div class="col-md-12">
+    <h3>3. Test Component</h3>
     <counter />
   </div>
-  <br />
-  <img src="./images/a.jpg" />
-  <div class="img"></div>
-  <span class="glyphicon glyphicon-heart"></span>
+
+  <div class="col-md-12">
+    <h3>4. Test image</h3>
+    <img src="./images/a.jpg" />
+  </div>
+
+  <div class="col-md-12">
+    <h3>5. Test background-image</h3>
+    <div class="img"></div>
+  </div>
+
+  <div class="col-md-12">
+    <h3>6. Test icon font</h3>
+    <span class="glyphicon glyphicon-heart"></span>
+  </div>
 </div>
 </template>
 <script src="./component.js"></script>

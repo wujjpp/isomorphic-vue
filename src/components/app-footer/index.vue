@@ -1,9 +1,7 @@
 <template>
-<ul>
-  <li v-for="item in items">
-    <router-link :to="item.name">{{item.text}}</router-link>
-  </li>
-</ul>
+<footer class="footer">
+  <span>Made with ♥ by Wu Jian Ping</span>
+</footer>
 </template>
 
 <style lang="scss" src="./style.scss" scoped></style>
