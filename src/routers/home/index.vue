@@ -1,6 +1,6 @@
 <template>
-<div class="hello">
-  <h2>This is home page</h2>
+<div class="row">
+  <div class="col-md-12" v-html="readme"></div>
 </div>
 </template>
 <script src="./component.js"></script>

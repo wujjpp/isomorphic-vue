@@ -9,6 +9,8 @@ import path from 'path'
 import config from '../config'
 import sharedClientConfig from './client.shared'
 import styleLoaderConfig from './style-loader-config'
+import marked from 'marked'
+const renderer = new marked.Renderer()
 
 export default Object.assign({}, sharedClientConfig, {
   output: {
@@ -91,6 +93,20 @@ export default Object.assign({}, sharedClientConfig, {
             }
           }
         ]
+      },
+
+      {
+        test: /\.md$/,
+        use: [{
+          loader: 'html-loader'
+        },
+        {
+          loader: 'markdown-loader',
+          options: {
+            pedantic: true,
+            renderer
+          }
+        }]
       }
     ]
   },

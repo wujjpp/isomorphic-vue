@@ -2,6 +2,8 @@
  * Created by Wu Jian Ping on - 2017/12/04.
  */
 
+import readme from '../../../README.md'
+
 let hooks = {
   init({ store, route, req }) {
     return store.dispatch('tdk/setTdk', {
@@ -13,5 +15,10 @@ let hooks = {
 }
 
 export default {
-  hooks
+  hooks,
+  data() {
+    return {
+      readme
+    }
+  }
 }
