@@ -97,7 +97,8 @@ export default Object.assign({}, sharedClientConfig, {
 
   plugins: [
     new webpack.DefinePlugin({
-      '__BROWSER__': true
+      '__BROWSER__': true,
+      '__BUILD__': true
     }),
 
     new webpack.DefinePlugin({

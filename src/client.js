@@ -5,6 +5,10 @@
 import createApp from './create-app'
 import _ from 'lodash'
 
+if (__BROWSER__) {
+  require('./styles/global.scss')
+}
+
 const { app, router, store } = createApp()
 
 if (window.__INITIAL_STATE__) {

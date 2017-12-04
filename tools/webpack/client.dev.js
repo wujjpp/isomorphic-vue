@@ -166,7 +166,8 @@ export default Object.assign({}, sharedClientConfig, {
 
   plugins: [
     new webpack.DefinePlugin({
-      '__BROWSER__': true
+      '__BROWSER__': true,
+      '__BUILD__': false
     }),
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify('development')

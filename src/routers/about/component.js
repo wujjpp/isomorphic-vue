@@ -5,9 +5,9 @@
 let hooks = {
   init({ store, route, req }) {
     return store.dispatch('tdk/setTdk', {
-      title: 'this is about Page',
-      description: 'this is about page\'s description',
-      keywords: 'this is about page\'s keywords'
+      title: 'This is about Page',
+      description: 'This is about page\'s description',
+      keywords: 'This is about page\'s keywords'
     })
   }
 }

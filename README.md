@@ -20,8 +20,8 @@ and newcomers to the industry.
 
 ## How to Install
 ```shell
-$ git clone https://github.com/wujjpp/marko-starter-kit.git
-$ cd marko-starter-kit
+$ git clone https://github.com/wujjpp/isomorphic-vue.git
+$ cd isomorphic-vue
 $ npm install
 ```
 
@@ -146,3 +146,5 @@ $ npm install
 ```
 
 Made with ♥ by Wu Jian Ping
+
+Feel free to contact me if you have any problem [830390@qq.com](mailto:830390@qq.com)

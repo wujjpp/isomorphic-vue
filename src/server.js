@@ -26,7 +26,15 @@ app.set('query parser', parse)
 app.use(helmet())
 app.use(compression())
 
-app.use(express.static(path.join(__dirname, 'public')))
+// serve static resources
+if (!__BUILD__) {
+  app.use(express.static(path.join(__dirname, 'public')))
+}
+if (__BUILD__) {
+  app.use(express.static(path.join(__dirname, 'public'), {
+    maxAge: '5d'
+  }))
+}
 
 // setup body-parser
 app.use(bodyParser.json({limit: '5000kb'}))
